@@ -5,8 +5,8 @@
 #### Level 1 - Basics
 ##### Desktop:
 
-![Menu-Basics-desktop](https://user-images.githubusercontent.com/60116865/146435268-6d80f79a-c966-4d6b-b8e0-4aabc98131bd.gif)
+![Menu-Basics-desktop](https://user-images.githubusercontent.com/60116865/146435814-e38e1a06-15e8-4ef7-adf9-38af86cb181e.gif)
 
 ##### Mobile:
 
-![Menu-Basics-mobile](https://user-images.githubusercontent.com/60116865/146435316-741468fc-a323-45a3-aa2d-4200762824f1.gif)
+![Menu-Basics-mobile](https://user-images.githubusercontent.com/60116865/146435832-f8d57e96-b068-4b27-b0d0-6edee2ca5aee.gif)
