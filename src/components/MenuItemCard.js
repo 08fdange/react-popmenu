@@ -48,6 +48,7 @@ const DescriptionText = styled.p`
 
 const PriceSection = styled.div`
   margin-left: auto;
+  padding-left: 16px;
 `;
 
 const PriceText = styled.h3`
