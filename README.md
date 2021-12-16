@@ -3,4 +3,10 @@
 #### An example of a menu application for Popmenu
 
 #### Level 1 - Basics
-![Menu - Basics](https://user-images.githubusercontent.com/60116865/146431936-404a928e-3b11-4c6c-9c3c-b9d0590ed0c8.gif)
+##### Desktop:
+
+![Menu-Basics-desktop](https://user-images.githubusercontent.com/60116865/146435268-6d80f79a-c966-4d6b-b8e0-4aabc98131bd.gif)
+
+##### Mobile:
+
+![Menu-Basics-mobile](https://user-images.githubusercontent.com/60116865/146435316-741468fc-a323-45a3-aa2d-4200762824f1.gif)
