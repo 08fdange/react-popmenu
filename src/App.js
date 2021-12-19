@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import AppManager from './utilities/AppManager';
@@ -16,6 +16,7 @@ const App = () => {
   const [modalType, setModalType] = useState('add');
   const [item, setItem] = useState();
   const menu = useSelector(({ menu }) => menu.results);
+  const endOfMenuItems = useRef(null);
 
   const handleModal = () => {
     setModalOpen((prev) => !prev);
@@ -32,11 +33,15 @@ const App = () => {
     handleModal();
   };
 
+  const scrollToBottom = () => {
+    endOfMenuItems.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <AppManager>
       <div className='App'>
           {modalType === 'add' ?
-            <AddItemModal open={modalOpen} handleModal={handleModal} />
+            <AddItemModal open={modalOpen} handleModal={handleModal} scrollToBottom={scrollToBottom} />
             :
             <RemoveItemModal open={modalOpen} item={item} handleModal={handleModal} />
           }
@@ -51,6 +56,7 @@ const App = () => {
               <MenuItemCard key={item?.id || index} handleDelete={() => removeItemModal(item)} {...item} />
             )
           })}
+          <div ref={endOfMenuItems} />
         </MenuWrapper>
       </div>
     </AppManager>

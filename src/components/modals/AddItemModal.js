@@ -12,6 +12,7 @@ import Colors from '../../theme/colors';
 const propTypes = {
   open: PropTypes.bool,
   handleModal: PropTypes.func.isRequired,
+  scrollToBottom: PropTypes.func.isRequired,
 };
 
 const Wrapper = styled.div`
@@ -127,7 +128,7 @@ const ErrorText = styled.p`
 `;
 
 const AddItemModal = (props) => {
-  const { open, handleModal } = props;
+  const { open, handleModal, scrollToBottom } = props;
   const { register, handleSubmit, reset, formState: { errors }} = useForm();
   const dispatch = useDispatch();
 
@@ -136,6 +137,7 @@ const AddItemModal = (props) => {
     data.id = uuid();
     dispatch(addItem(data));
     handleModal();
+    scrollToBottom();
   };
 
   const closeModal = () => {
