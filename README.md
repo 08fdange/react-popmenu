@@ -1,6 +1,10 @@
 # React Popmenu
 
-## An example of a menu application for Popmenu
+## An example of a simple menu application for Popmenu 
+Notes:
+- All styling is built with styled-components using custom CSS. There's no styling libraries like Bootstrap or Material UI used.
+- I've used a couple external libraries/packages for certain features including enquire.js, react-hook-form, react-redux and uuidv4.
+- Testing libraries consist of react-test-renderer, jest-styled-components and redux-mock-store.
 
 ## Level 1 - Basics
 #### Desktop:
