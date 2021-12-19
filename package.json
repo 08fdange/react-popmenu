@@ -6,11 +6,19 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "enquire.js": "^2.1.6",
+    "eslint": "^7.11.0",
+    "eslint-scope": "^7.1.0",
+    "eslint-visitor-keys": "^3.1.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.22.1",
+    "react-redux": "^7.2.6",
     "react-scripts": "4.0.3",
+    "redux": "^4.1.2",
     "styled-components": "^5.3.3",
+    "uuidv4": "^6.2.12",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -38,6 +46,8 @@
     ]
   },
   "devDependencies": {
-    "react-test-renderer": "^17.0.2"
+    "jest-styled-components": "^7.0.8",
+    "react-test-renderer": "^17.0.2",
+    "redux-mock-store": "^1.5.4"
   }
 }
