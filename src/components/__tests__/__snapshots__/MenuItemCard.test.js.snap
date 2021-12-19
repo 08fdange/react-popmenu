@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MenuItemCard MenuItemCard - renders correctly 1`] = `
+<div
+  className="sc-hKwDye kQLoSl"
+  id={0}
+  title="Bologna Sandwich"
+>
+  <div
+    className="sc-eCImPb bqIGb"
+  >
+    <img
+      alt="Bologna Sandwich"
+      className="sc-jRQBWg ePIiRZ"
+      src="https://upload.wikimedia.org/wikipedia/commons/2/20/Bolgona_sandwich.jpg"
+    />
+  </div>
+  <div
+    className="sc-gKclnd gUQszg"
+  >
+    <h2
+      className="sc-iCfMLu eYrbJW"
+    >
+      Bologna Sandwich
+    </h2>
+    <p
+      className="sc-furwcr bgEzXB"
+    >
+      Fried bologna sandwich with cheese that's likely past it's expiration date.
+    </p>
+  </div>
+  <div
+    className="sc-pVTFL bKhZfx"
+  >
+    <h3
+      className="sc-jrQzAO civLCO"
+    >
+      $1.00
+    </h3>
+    <button
+      className="sc-bdvvtL htfPGY"
+    >
+      Delete
+    </button>
+  </div>
+</div>
+`;

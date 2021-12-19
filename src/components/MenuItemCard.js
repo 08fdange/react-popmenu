@@ -1,17 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import Button from './buttons/Button';
+import withAppManager from '../utilities/withAppManager';
+import Colors from '../theme/colors';
 
 const propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
   price: PropTypes.number,
   imgUrl: PropTypes.string,
+  viewport: PropTypes.string,
+  handleDelete: PropTypes.func,
 };
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: ${({ isMobile }) => isMobile ? 'column' : 'row'};
   padding: 20px 16px;
   border-top: 1px solid #e6e6e6;
   border-bottom: 1px solid #e6e6e6;
@@ -19,15 +25,16 @@ const Wrapper = styled.div`
 
 const ImgWrapper = styled.div`
   display: flex;
-`
+`;
 
 const StyledImg = styled.img`
-  height: 120px;
-  width: 120px;
+  height: ${({ isMobile }) => isMobile ? '100%' : '120px'};
+  width: ${({ isMobile }) => isMobile ? '100%' : '120px'};
   aspect-ratio: 1 / 1;
   border-radius: 6px;
   vertical-align: middle;
   margin-right: 16px;
+  ${({ isMobile }) => isMobile && 'margin-bottom: 16px;'}
 `;
 
 const TextSection = styled.div`
@@ -47,8 +54,12 @@ const DescriptionText = styled.p`
 `;
 
 const PriceSection = styled.div`
-  margin-left: auto;
-  padding-left: 16px;
+  display: flex;
+  flex-direction: ${({ isMobile }) => isMobile ? 'row' : 'column'};
+  justify-items: space-between;
+  margin-left: ${({ isMobile }) => isMobile ? '0' : 'auto'};
+  padding-left: ${({ isMobile }) => isMobile ? '0' : '16px'};
+  ${({ isMobile }) => isMobile && 'padding-top: 16px;'}
 `;
 
 const PriceText = styled.h3`
@@ -62,26 +73,35 @@ const MenuItemCard = (props) => {
     title,
     description,
     price,
-    imgUrl
+    imgUrl,
+    viewport,
+    handleDelete,
   } = props;
 
+  const isMobile = viewport === 'mobile' || viewport === 'mobileSmall';
+
   return (
-    <Wrapper {...props}>
+    <Wrapper isMobile={isMobile} {...props}>
       <ImgWrapper>
-        <StyledImg src={imgUrl} alt={title} />
+        <StyledImg isMobile={isMobile} src={imgUrl} alt={title} />
       </ImgWrapper>
       <TextSection>
         <TitleText>{title}</TitleText>
         <DescriptionText>{description}</DescriptionText>
       </TextSection>
-      <PriceSection>
+      <PriceSection isMobile={isMobile}>
         <PriceText>{`$${price.toFixed(2)}`}</PriceText>
+        <Button
+          onClick={handleDelete}
+          backgroundColor={Colors.SecondaryRed}
+          hoverBackgroundColor={Colors.SecondaryRedDark}
+        >Delete</Button>
       </PriceSection>
     </Wrapper>
-  )
-}
+  );
+};
 
 MenuItemCard.propTypes = propTypes;
 
-export default MenuItemCard;
+export default withAppManager(MenuItemCard);
 
