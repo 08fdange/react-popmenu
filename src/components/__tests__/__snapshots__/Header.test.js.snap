@@ -3,6 +3,7 @@
 exports[`Header - renders correctly 1`] = `
 .c0 {
   position: fixed;
+  z-index: 999;
   top: 0;
   height: 78px;
   width: calc(100% - 32px);

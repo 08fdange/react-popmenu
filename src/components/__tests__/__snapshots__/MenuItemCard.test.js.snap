@@ -2,41 +2,47 @@
 
 exports[`MenuItemCard MenuItemCard - renders correctly 1`] = `
 <div
-  className="sc-hKwDye kQLoSl"
+  className="sc-jRQBWg pvMGm"
   id={0}
   title="Bologna Sandwich"
 >
   <div
-    className="sc-eCImPb bqIGb"
+    className="sc-gKclnd cQGpIg"
   >
     <img
       alt="Bologna Sandwich"
-      className="sc-jRQBWg ePIiRZ"
+      className="sc-iCfMLu bswcOM"
       src="https://upload.wikimedia.org/wikipedia/commons/2/20/Bolgona_sandwich.jpg"
     />
   </div>
   <div
-    className="sc-gKclnd gUQszg"
+    className="sc-iqseJM lcOZAB"
   >
     <h2
-      className="sc-iCfMLu eYrbJW"
+      className="sc-crHmcD gCkusV"
     >
       Bologna Sandwich
     </h2>
     <p
-      className="sc-furwcr bgEzXB"
+      className="sc-bqiRlB eKPEuo"
     >
       Fried bologna sandwich with cheese that's likely past it's expiration date.
     </p>
   </div>
   <div
-    className="sc-pVTFL bKhZfx"
+    className="sc-hBUSln kPbUaW"
   >
     <h3
-      className="sc-jrQzAO civLCO"
+      className="sc-fotOHu eHwBpE"
     >
       $1.00
     </h3>
+    <button
+      className="sc-bdvvtL gMcvTF sc-dJjYzT lkyCUi"
+      onClick={[Function]}
+    >
+      Edit
+    </button>
     <button
       className="sc-bdvvtL htfPGY"
     >
