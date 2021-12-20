@@ -7,6 +7,7 @@ import { v4 as uuid } from 'uuid';
 import PropTypes from 'prop-types';
 import Modal from './BaseModal';
 import Button from '../buttons/Button';
+import { Input } from '../inputs';
 import Colors from '../../theme/colors';
 
 const propTypes = {
@@ -50,42 +51,6 @@ const InputWrapper = styled.div`
   ${({ error }) => error && 'padding: 0;'}
 `;
 
-const StyledInput = styled.input`
-  flex: 1;
-  height: 42px;
-  width: 100%;
-  font-size: 22px;
-  font-family: 'Raleway';
-  color: ${Colors.GrayDark};
-  border: 1px solid lightgray;
-  border-radius: 6px;
-  padding-left: 6px;
-  -webkit-appearance: none;
-  &:focus {
-    outline: none;
-    border: 1px solid black;
-  }
-`;
-
-const DescriptionInput = styled.textarea`
-  flex: 1;
-  height: 126px;
-  width: 100%;
-  font-size: 22px;
-  font-family: 'Raleway';
-  color: ${Colors.GrayDark};
-  border: 1px solid lightgray;
-  border-radius: 6px;
-  padding-left: 6px;
-  padding-top: 8px;
-  resize: none;
-  -webkit-appearance: none;
-  &:focus {
-    outline: none;
-    border: 1px solid black;
-  }
-`;
-
 const PriceInputWrapper = styled(InputWrapper)`
   position: relative;
 `;
@@ -98,7 +63,7 @@ const CurrencySymbol = styled.span`
   top: 32px;
 `;
 
-const PriceInput = styled(StyledInput)`
+const PriceInput = styled(Input)`
   padding-left: 25px;
   width: calc(100% - 19px);
 `;
@@ -156,20 +121,21 @@ const AddItemModal = (props) => {
           <StyledForm>
             <InputWrapper error={!!errors?.title?.message}>
               <label>Title</label>
-              <StyledInput 
+              <Input 
                 type='text'
                 name='title'
                 {...register('title', { required: 'Must include a title for your menu item.' })}
-              ></StyledInput>
+              ></Input>
               <ErrorText>{errors?.title?.message}</ErrorText>
             </InputWrapper>
             <InputWrapper error={!!errors?.description?.message}>
               <label>Description</label>
-              <DescriptionInput 
+              <Input
+                variant='textarea'
                 type='text' 
                 name='description'
                 {...register('description', { required: 'Must include a description for your menu item.' })}
-                ></DescriptionInput>
+                ></Input>
                 <ErrorText>{errors?.description?.message}</ErrorText>
             </InputWrapper>
             <PriceInputWrapper error={!!errors?.price?.message}>
@@ -185,7 +151,7 @@ const AddItemModal = (props) => {
             </PriceInputWrapper>
             <InputWrapper error={!!errors?.imgUrl?.message}>
               <label>Image URL</label>
-              <StyledInput
+              <Input
                 type='text'
                 name='imgUrl'
                 {...register('imgUrl', { 
@@ -195,7 +161,7 @@ const AddItemModal = (props) => {
                     message: 'Must be a valid url'
                   }
                 })}
-              ></StyledInput>
+              ></Input>
               <ErrorText>{errors?.imgUrl?.message}</ErrorText>
             </InputWrapper>
           </StyledForm>
