@@ -44,3 +44,18 @@ Notes:
 
 ### Misc:
 - Theme folder with colors (if time weren't limited I would also define a constants object for spacing/padding variables for consistency throughout app)
+
+## Level 3 - Edit
+#### Desktop:
+
+![Menu-Edit-desktop](https://user-images.githubusercontent.com/60116865/146711510-7fc1b335-f1cf-4c46-967f-5d40b39c6b06.gif)
+
+#### Mobile: 
+
+![Menu-Edit-mobile](https://user-images.githubusercontent.com/60116865/146711533-a6b67b1a-a7a3-47fc-8b19-9acf0a917f17.gif)
+
+### Additions:
+- Extracted Inputs from AddItemModal, with Input orchestrator and two variants: TextInput and TextAreaInput
+- Added an edit button for each item, state values for editing and editing image url editing
+- Added inputs that are based on ternary operators that render either text or inputs based on isEdit state
+- Added image overlay for menu item pictures, with "Click to edit" text and onClick that renders another input to edit the image url based on the editImg state
