@@ -9,6 +9,7 @@ const propTypes = {
 
 const Wrapper = styled.div`
   position: fixed;
+  z-index: 999;
   top: 0;
   height: 78px;
   width: calc(100% - 32px);
