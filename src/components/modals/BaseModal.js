@@ -32,7 +32,7 @@ const ModalBackground = styled.div`
   left: 0;
   top: 0;
   background-color: rgba(229, 234, 240, 0.85);
-  z-index: 990;
+  z-index: 1000;
 `;
 
 const ModalWrapper = styled.div`
