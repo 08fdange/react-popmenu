@@ -53,7 +53,7 @@ const App = () => {
           title='Menu'
         >
         <ButtonWrapper>
-          <Button variant="primary" style={{ marginRight: '8px' }} onClick={addItemModal}>Add menu item</Button>
+          <Button variant="primary" onClick={addItemModal}>Add menu item</Button>
         </ButtonWrapper>
         </Header>
         <MenuWrapper>
