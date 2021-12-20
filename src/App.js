@@ -11,6 +11,10 @@ const MenuWrapper = styled.div`
   margin-top: 78px;
 `;
 
+const ButtonWrapper = styled.div`
+  display: flex;
+`;
+
 const App = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState('add');
@@ -48,7 +52,9 @@ const App = () => {
         <Header 
           title='Menu'
         >
-          <Button variant="primary" onClick={addItemModal}>Add menu item</Button>
+        <ButtonWrapper>
+          <Button variant="primary" style={{ marginRight: '8px' }} onClick={addItemModal}>Add menu item</Button>
+        </ButtonWrapper>
         </Header>
         <MenuWrapper>
           {menu.map((item, index) => {

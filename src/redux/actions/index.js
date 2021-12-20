@@ -1,1 +1,1 @@
-export { addItem, removeItem } from './itemActions';
+export { addItem, removeItem, editItem } from './itemActions';
