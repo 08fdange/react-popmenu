@@ -8,7 +8,7 @@ const propTypes = {
 };
 
 const Wrapper = styled.div`
-  position: fixed;
+  position: sticky;
   z-index: 999;
   top: 0;
   height: 78px;

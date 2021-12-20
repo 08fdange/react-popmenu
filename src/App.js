@@ -7,10 +7,6 @@ import MenuItemCard from './components/MenuItemCard';
 import { AddItemModal, RemoveItemModal } from './components/modals';
 import Button from './components/buttons/Button';
 
-const MenuWrapper = styled.div`
-  margin-top: 78px;
-`;
-
 const ButtonWrapper = styled.div`
   display: flex;
 `;
@@ -56,14 +52,12 @@ const App = () => {
           <Button variant="primary" onClick={addItemModal}>Add menu item</Button>
         </ButtonWrapper>
         </Header>
-        <MenuWrapper>
-          {menu.map((item, index) => {
-            return(
-              <MenuItemCard key={item?.id || index} handleDelete={() => removeItemModal(item)} {...item} />
-            )
-          })}
-          <div ref={endOfMenuItems} />
-        </MenuWrapper>
+        {menu.map((item, index) => {
+          return(
+            <MenuItemCard key={item?.id || index} handleDelete={() => removeItemModal(item)} {...item} />
+          )
+        })}
+        <div ref={endOfMenuItems} />
       </div>
     </AppManager>
   );
