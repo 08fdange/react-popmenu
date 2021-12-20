@@ -6,7 +6,7 @@ import AddItemModal from '../modals/AddItemModal';
 
 const mockStore = configureStore([]);
 const initialState = {};
-const closeModalFn = () => undefined;
+const testFn = () => undefined;
 
 jest.mock('enquire.js', () => {
   return {
@@ -39,7 +39,7 @@ describe('AddItemModal', () => {
 
     component = renderer.create(
       <Provider store={store}>
-        <AddItemModal handleModal={closeModalFn} />
+        <AddItemModal handleModal={testFn} scrollToBottom={testFn} />
       </Provider>
     );
   });
