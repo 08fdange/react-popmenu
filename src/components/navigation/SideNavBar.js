@@ -25,7 +25,7 @@ function getWidthExpanded(viewport) {
       width:calc(100% - 24px);`;
   }
   return `width: ${width}`;
-}
+};
 
 const StyledMenuButton = styled(MenuButton)`
   transform: translateX(0);
@@ -60,13 +60,6 @@ function calculateOffsetTop(viewport) {
     break;
   }
   return `${offsetTop}px`;
-}
-
-const getMargin = (desktop) => {
-  if (desktop) {
-    return '76px';
-  }
-  return '32px';
 };
 
 const SidebarWrapper = styled.div`
@@ -132,7 +125,6 @@ const Icon = styled.img`
   width: 40px;
   height: 40px;
 `;
-
 
 const renderList = (
   content,
