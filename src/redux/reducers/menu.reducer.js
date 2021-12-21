@@ -40,7 +40,7 @@ const menuReducer = (state = initialState, action) => {
         ...state,
         [action.menu]: {
           ...state[action.menu],
-          items: [...state[action.menu].map((item) => {
+          items: [...state[action.menu].items.map((item) => {
             if (item.id !== action.id) return item;
             return {...item, ...action.payload}
           })]

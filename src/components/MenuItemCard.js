@@ -17,7 +17,7 @@ const propTypes = {
   imgUrl: PropTypes.string,
   viewport: PropTypes.string,
   handleDelete: PropTypes.func,
-  menuName: PropTypes.string,
+  menu: PropTypes.string,
 };
 
 const Wrapper = styled.div`
@@ -157,7 +157,7 @@ const MenuItemCard = (props) => {
     imgUrl,
     viewport,
     handleDelete,
-    menuName,
+    menu,
   } = props;
 
   const dispatch = useDispatch();
@@ -176,7 +176,7 @@ const MenuItemCard = (props) => {
   const handleEdit = (data) => {
     if (isEdit && isDirty) {
       data.price = parseInt(data.price, 10);
-      dispatch(editItem(id, data, menuName));
+      dispatch(editItem(id, data, menu));
       setIsEdit(false);
       reset(data);
     } else {

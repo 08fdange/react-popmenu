@@ -89,7 +89,12 @@ const App = ({ viewport }) => {
       <Menu isMobile={isMobile}>
         {menu.items.map((item, index) => {
           return(
-            <MenuItemCard key={item?.id || index} handleDelete={() => removeItemModal(item)} {...item} />
+            <MenuItemCard 
+              key={item?.id || index} 
+              handleDelete={() => removeItemModal(item)}
+              menu={menuKey}
+              {...item} 
+            />
           )
         })}
       </Menu>
