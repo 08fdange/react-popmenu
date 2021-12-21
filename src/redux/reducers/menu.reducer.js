@@ -1,6 +1,19 @@
-import { Menu } from '../../data/menu';
+import { Menu, Menu2, Menu3 } from '../../data';
 
-const initialState = { results: Menu };
+const initialState = {
+  menu1: {
+    title: 'Menu 1',
+    items: Menu
+  }, 
+  menu2: {
+    title: 'Menu 2',
+    items: Menu2,
+  }, 
+  menu3: {
+    title: 'Menu 3',
+    items: Menu3,
+  }
+};
 
 const menuReducer = (state = initialState, action) => {
   if (!action.type) return state;
@@ -9,23 +22,29 @@ const menuReducer = (state = initialState, action) => {
     case "ADD_MENU_ITEM":
       return {
         ...state,
-        results: [
-          ...state.results,
-          action.payload
-        ]
+        [action.menu]: {
+          ...state[action.menu],
+          items: [...state[action.menu].items, action.payload]
+        }
       }
     case "REMOVE_MENU_ITEM":
       return {
         ...state,
-        results: [...state.results.filter((item) => action.id !== item.id)]
+        [action.menu]: {
+          ...state[action.menu],
+          items: [...state[action.menu].items.filter((item) => action.id !== item.id)]
+        }
       }
     case "EDIT_MENU_ITEM":
       return {
         ...state,
-        results: [...state.results.map((item) => {
-          if (item.id !== action.id) return item;
-          return {...item, ...action.payload}
-        })]
+        [action.menu]: {
+          ...state[action.menu],
+          items: [...state[action.menu].map((item) => {
+            if (item.id !== action.id) return item;
+            return {...item, ...action.payload}
+          })]
+        }
       }
     default:
       return state; 

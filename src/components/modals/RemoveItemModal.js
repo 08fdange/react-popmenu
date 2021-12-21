@@ -19,6 +19,7 @@ const propTypes = {
   open: PropTypes.bool,
   item: PropTypes.shape(ItemType),
   handleModal: PropTypes.func.isRequired,
+  menu: PropTypes.string,
 };
 
 const Wrapper = styled.div`
@@ -67,11 +68,11 @@ const StyledButton = styled(Button)`
 `;
 
 const RemoveItemModal = (props) => {
-  const { open, item, handleModal } = props;
+  const { open, item, handleModal, menu } = props;
   const dispatch = useDispatch();
 
   const deleteItem = () => {
-    dispatch(removeItem(item?.id));
+    dispatch(removeItem(item?.id, menu));
     handleModal();
   };
 

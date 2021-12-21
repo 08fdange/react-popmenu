@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import AppManager from './utilities/AppManager';
-import Header from './components/Header';
+import { withAppManager } from './utilities';
+import NavBar from './components/navigation/NavBar';
+import SideNavBar from './components/navigation/SideNavBar';
 import MenuItemCard from './components/MenuItemCard';
 import { AddItemModal, RemoveItemModal } from './components/modals';
 import Button from './components/buttons/Button';
@@ -11,12 +12,20 @@ const ButtonWrapper = styled.div`
   display: flex;
 `;
 
-const App = () => {
+const Menu = styled.div`
+  padding-top: ${({ isMobile }) => isMobile ? '84px' : '94px'};
+`;
+
+const App = ({ viewport }) => {
+  const [menuKey, setMenuKey] = useState('menu1');
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState('add');
   const [item, setItem] = useState();
-  const menu = useSelector(({ menu }) => menu.results);
+  const menuStore = useSelector(({ menu }) => menu); 
+  const menu = useSelector(({ menu }) => menu[menuKey]);
+  const startOfMenuItems = useRef(null);
   const endOfMenuItems = useRef(null);
+  const isMobile = viewport === 'mobile' || viewport === 'mobileSmall';
 
   const handleModal = () => {
     setModalOpen((prev) => !prev);
@@ -33,34 +42,54 @@ const App = () => {
     handleModal();
   };
 
+  const setMenu = (key) => {
+    setMenuKey(key);
+    scrollToTop();
+  };
+
+  const scrollToTop = () => {
+    startOfMenuItems.current.scrollIntoView();
+  }
+
   const scrollToBottom = () => {
     endOfMenuItems.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <AppManager>
-      <div className='App'>
-          {modalType === 'add' ?
-            <AddItemModal open={modalOpen} handleModal={handleModal} scrollToBottom={scrollToBottom} />
-            :
-            <RemoveItemModal open={modalOpen} item={item} handleModal={handleModal} />
-          }
-        <Header 
-          title='Menu'
-        >
+    <div className='App'>
+        {modalType === 'add' ?
+          <AddItemModal 
+            open={modalOpen} 
+            handleModal={handleModal} 
+            scrollToBottom={scrollToBottom} 
+            menu={menuKey}
+          />
+          :
+          <RemoveItemModal 
+            open={modalOpen} 
+            item={item} 
+            handleModal={handleModal} 
+            menu={menuKey}
+          />
+        }
+      <NavBar>
+        <h1>Menu</h1>
         <ButtonWrapper>
           <Button variant="primary" onClick={addItemModal}>Add menu item</Button>
         </ButtonWrapper>
-        </Header>
-        {menu.map((item, index) => {
+      </NavBar>
+      <SideNavBar setMenu={setMenu} content={menuStore} />
+      <div ref={startOfMenuItems} />
+      <Menu isMobile={isMobile}>
+        {menu.items.map((item, index) => {
           return(
             <MenuItemCard key={item?.id || index} handleDelete={() => removeItemModal(item)} {...item} />
           )
         })}
-        <div ref={endOfMenuItems} />
-      </div>
-    </AppManager>
+      </Menu>
+      <div ref={endOfMenuItems} />
+    </div>
   );
 };
 
-export default App;
+export default withAppManager(App);

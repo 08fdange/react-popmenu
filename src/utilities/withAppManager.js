@@ -1,5 +1,6 @@
 import React from 'react';
 import ViewportManager from './ViewportManager';
+import SideNavManager from './SideNavManager';
 import _isStyledComponent from './utils/isStyledComponent';
 
 const CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -14,6 +15,7 @@ export default function wrapWithManager(Component) {
     constructor(props) {
       super(props);
       this.viewportManager = ViewportManager;
+      this.sideNavManager = SideNavManager;
       this.state = {};
       this.id = this.makeId(10);
     }
@@ -22,17 +24,32 @@ export default function wrapWithManager(Component) {
       this.viewportManager.subscribe((this.id), (vp) => {
         this.setViewport(vp);
       });
+      this.sideNavManager.subscribe((this.id), (isExpanded) => {
+        this.setSideNavState(isExpanded);
+      });
       this.setState({
         viewport: this.viewportManager.viewport,
+        sideNavManager: this.sideNavManager.sideNavExpanded,
       });
     }
 
     componentWillUnmount() {
       this.viewportManager.unsubscribe(this.id);
+      this.sideNavManager.unsubscribe(this.id);
     }
 
     setViewport(vp) {
       this.setState({ viewport: vp });
+    }
+
+    setSideNavState(isExpanded) {
+      this.setState({ sideNavExpanded: isExpanded });
+    }
+
+    sideNavAppHandler = (data) => {
+      if (data !== this.sideNavManager.sideNavExpanded) {
+        this.sideNavManager.sideNavToggled(data);
+      }
     }
 
     makeId(length) {
@@ -49,10 +66,12 @@ export default function wrapWithManager(Component) {
     }
 
     render() {
-      const { viewport } = this.state;
+      const { viewport, sideNavExpanded = false } = this.state;
 
       const constructedProps = {
         viewport,
+        sideNavExpanded,
+        sideNavAppHandler: this.sideNavAppHandler,
         ...this.props,
       };
 
