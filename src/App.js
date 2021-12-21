@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { withAppManager } from './utilities';
 import NavBar from './components/navigation/NavBar';
 import SideNavBar from './components/navigation/SideNavBar';
-import MenuItemCard from './components/MenuItemCard';
+import MenuItemCard from './components/cards/MenuItemCard';
 import { AddItemModal, RemoveItemModal } from './components/modals';
 import Button from './components/buttons/Button';
 

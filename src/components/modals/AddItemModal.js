@@ -102,6 +102,7 @@ const AddItemModal = (props) => {
     data.price = parseInt(data.price, 10);
     data.id = uuid();
     dispatch(addItem(data, menu));
+    reset();
     handleModal();
     scrollToBottom();
   };

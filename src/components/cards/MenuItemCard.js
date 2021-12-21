@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { editItem } from '../redux/actions';
+import { editItem } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import Button from './buttons/Button';
-import { Input } from './inputs';
-import withAppManager from '../utilities/withAppManager';
-import Colors from '../theme/colors';
+import Button from '../buttons/Button';
+import { Input } from '../inputs';
+import withAppManager from '../../utilities/withAppManager';
+import Colors from '../../theme/colors';
 
 const propTypes = {
   id: PropTypes.string,
