@@ -47,7 +47,7 @@ const StyledForm = styled.form`
 `;
 
 const InputWrapper = styled.div`
-  padding-bottom: 16px;
+  padding-bottom: 8px;
   margin-right: 16px;
   ${({ error }) => error && 'padding: 0;'}
 `;

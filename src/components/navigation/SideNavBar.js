@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Colors from '../../theme/colors';
 import withAppManager from '../../utilities/withAppManager';
 import MenuButton from './MenuButton';
+import menuIcon from '../../assets/menuIcon.png';
 
 function getWidthExpanded(viewport) {
   let width;
@@ -80,7 +81,7 @@ const SidebarWrapper = styled.div`
   transition: width 400ms, padding 400ms linear;
   padding-left: ${({ isDesktop, sideNavExpanded }) => (!isDesktop && !sideNavExpanded ? 0 : '12px')};
   padding-right: ${({ isDesktop, sideNavExpanded }) => (!isDesktop && !sideNavExpanded ? 0 : '12px')};
-  justify-content:  ${({ isDesktop }) => (isDesktop ? 'space-between' : undefined)};
+  justify-content:  ${({ isDesktop }) => (isDesktop ? 'start' : undefined)};
   background-color: ${Colors.White};
   top: 0;
   z-index: ${({ isDesktop }) => (isDesktop ? 986 : 982)};
@@ -96,57 +97,73 @@ const NavigationWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: ${({ isDesktop, viewport }) => (isDesktop ? 0 : `calc(${calculateOffsetTop(viewport)} + 32px)`)};
+  padding-top: ${({ isDesktop, viewport }) => (isDesktop ? '94px' : `calc(${calculateOffsetTop(viewport)} + 32px)`)};
   width: 100%;
 `;
 
 const MenuChoiceWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  height: ${({ isDesktop }) => (isDesktop ? 'auto' : '76px')};
-  justify-content: space-between;
+  ${'' /* height: ${({ isDesktop }) => (isDesktop ? 'auto' : '76px')}; */}
+  justify-content: start;
   align-items: center;
   border-radius: 16px;
   box-shadow: ${({ isDesktop}) => isDesktop ? undefined : '0 4px 14px 0 rgba(166,179,194,0.3)'};
   padding: 0px 16px;
-  margin-top: ${({ isDesktop }) => (isDesktop && '24px')};
-  margin-bottom: ${({ isDesktop }) => getMargin(isDesktop)};
   cursor: pointer;
+  ${({ active }) => active && `background-color: ${Colors.GrayLight};`}
+  &:hover {
+    background-color: ${({ active }) => active ? Colors.Gray : Colors.GrayVeryLight };
+  }
+`;
+
+const MenuText = styled.h3`
+  padding: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 240px;
+  ${({ hide }) => hide && 'visibility: hidden;'}
 `;
 
 const ContentWrapper = styled.div``;
 
+const Icon = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
 
 const renderList = (
   content,
+  menuKey,
   setMenu,
   isDesktop,
   sideNavExpanded,
   sideNavAppHandler,
-  expandedBottomAction,
 ) => {
-  if (!isDesktop) {
-    return (
-      <ContentWrapper>
-        {Object.keys(content).map((key, index) => {
-          const menu = content[key];
-          return (
-            <MenuChoiceWrapper 
-              onClick={() => {
-                setMenu(key);
-                sideNavAppHandler(false);
-              }}
-              key={`${menu.title}-${index}`}
-            >
-              <h3>{menu.title}</h3>
-            </MenuChoiceWrapper>
-          )
-        })}
-      </ContentWrapper>
-    );
-  }
   return (
     <ContentWrapper>
+      {Object.keys(content).map((key, index) => {
+        const menu = content[key];
+        const active = key === menuKey;
+        return (
+          <MenuChoiceWrapper 
+            onClick={() => {
+              setMenu(key);
+              sideNavAppHandler(false);
+            }}
+            active={active}
+            isDesktop={isDesktop}
+            key={`${menu.title}-${index}`}
+          >
+            <Icon src={menuIcon} alt="menu icon" />
+            <MenuText hide={!!isDesktop && !sideNavExpanded}>
+              {menu.title}
+            </MenuText>
+          </MenuChoiceWrapper>
+        )
+      })}
     </ContentWrapper>
   );
 }
@@ -154,6 +171,7 @@ const renderList = (
 const SideNavBar = (props) => {
   const {
     content,
+    menuKey,
     setMenu,
     viewport,
     sideNavExpanded,
@@ -186,6 +204,7 @@ const SideNavBar = (props) => {
         </NavigationWrapper>
         {renderList(
           content,
+          menuKey,
           setMenu,
           isDesktop,
           !!sideNavExpanded,

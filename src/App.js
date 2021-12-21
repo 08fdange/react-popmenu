@@ -14,6 +14,12 @@ const ButtonWrapper = styled.div`
 
 const Menu = styled.div`
   padding-top: ${({ isMobile }) => isMobile ? '84px' : '94px'};
+  display: flex;
+  flex-direction: column;
+`;
+
+const Title = styled.h1`
+  font-size: ${({ isMobile }) => isMobile ? '24px' : '32px'};
 `;
 
 const App = ({ viewport }) => {
@@ -73,13 +79,13 @@ const App = ({ viewport }) => {
           />
         }
       <NavBar offsetLeft={80}>
-        <h1>Menu</h1>
+        <Title isMobile={isMobile}>{menu.title}</Title>
         <ButtonWrapper>
           <Button variant="primary" onClick={addItemModal}>Add menu item</Button>
         </ButtonWrapper>
       </NavBar>
-      <SideNavBar setMenu={setMenu} content={menuStore} />
-      <div ref={startOfMenuItems} />
+      <SideNavBar menuKey={menuKey} setMenu={setMenu} content={menuStore} />
+      <div className="top-of-menu" ref={startOfMenuItems} />
       <Menu isMobile={isMobile}>
         {menu.items.map((item, index) => {
           return(
@@ -87,7 +93,7 @@ const App = ({ viewport }) => {
           )
         })}
       </Menu>
-      <div ref={endOfMenuItems} />
+      <div className="bottom-of-menu" ref={endOfMenuItems} />
     </div>
   );
 };
