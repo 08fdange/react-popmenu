@@ -2,11 +2,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
-import AddItemModal from '../modals/AddItemModal';
+import RemoveItemModal from '../RemoveItemModal';
 
 const mockStore = configureStore([]);
 const initialState = {};
-const testFn = () => undefined;
+const closeModalFn = () => undefined;
 
 jest.mock('enquire.js', () => {
   return {
@@ -27,7 +27,7 @@ jest.mock('react-redux', () => {
   }
 });
 
-describe('AddItemModal', () => {
+describe('RemoveItemModal', () => {
   let store;
   let component;
   beforeEach(() => {
@@ -39,12 +39,12 @@ describe('AddItemModal', () => {
 
     component = renderer.create(
       <Provider store={store}>
-        <AddItemModal handleModal={testFn} scrollToBottom={testFn} />
+        <RemoveItemModal handleModal={closeModalFn} />
       </Provider>
     );
   });
 
-  it('AddItemModal - renders correctly', () => {
+  it('RemoveItemModal - renders correctly', () => {
     const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   })

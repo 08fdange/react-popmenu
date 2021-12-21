@@ -103,6 +103,7 @@ const MenuChoiceWrapper = styled.div`
   border-radius: 16px;
   box-shadow: ${({ isDesktop}) => isDesktop ? undefined : '0 4px 14px 0 rgba(166,179,194,0.3)'};
   padding: 0px 16px;
+  margin-bottom: 16px;
   cursor: pointer;
   ${({ active }) => active && `background-color: ${Colors.GrayLight};`}
   &:hover {

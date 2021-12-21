@@ -2,7 +2,7 @@
 
 exports[`MenuItemCard MenuItemCard - renders correctly 1`] = `
 <div
-  className="sc-jRQBWg pvMGm"
+  className="sc-jRQBWg gLzgIa"
   id={0}
   title="Bologna Sandwich"
 >

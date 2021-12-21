@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import 'jest-styled-components';
-import Button from '../buttons/Button';
-import Colors from '../../theme/colors';
+import Button from '../Button';
+import Colors from '../../../theme/colors';
 
 test('Button - renders correctly', () => {
   const tree = renderer.create(<Button>Test</Button>).toJSON();
