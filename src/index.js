@@ -4,10 +4,13 @@ import store from './redux/store';
 import { Provider } from 'react-redux';
 import './index.css';
 import App from './App';
+import { AppManager } from './utilities';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <AppManager>
+      <App />
+    </AppManager>
   </Provider>,
   document.getElementById('root')
 );

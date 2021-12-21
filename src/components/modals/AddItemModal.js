@@ -14,6 +14,7 @@ const propTypes = {
   open: PropTypes.bool,
   handleModal: PropTypes.func.isRequired,
   scrollToBottom: PropTypes.func.isRequired,
+  menu: PropTypes.string,
 };
 
 const Wrapper = styled.div`
@@ -46,7 +47,7 @@ const StyledForm = styled.form`
 `;
 
 const InputWrapper = styled.div`
-  padding-bottom: 16px;
+  padding-bottom: 8px;
   margin-right: 16px;
   ${({ error }) => error && 'padding: 0;'}
 `;
@@ -93,14 +94,14 @@ const ErrorText = styled.p`
 `;
 
 const AddItemModal = (props) => {
-  const { open, handleModal, scrollToBottom } = props;
+  const { open, handleModal, scrollToBottom, menu } = props;
   const { register, handleSubmit, reset, formState: { errors }} = useForm();
   const dispatch = useDispatch();
 
   const handleSubmitForm = (data) => {
     data.price = parseInt(data.price, 10);
     data.id = uuid();
-    dispatch(addItem(data));
+    dispatch(addItem(data, menu));
     handleModal();
     scrollToBottom();
   };

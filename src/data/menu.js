@@ -1,4 +1,4 @@
-export const Menu = [
+export const Menu= [
   {
     id: '123',
     title: 'Stuffed Jalapenos',

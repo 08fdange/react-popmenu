@@ -17,12 +17,13 @@ const propTypes = {
   imgUrl: PropTypes.string,
   viewport: PropTypes.string,
   handleDelete: PropTypes.func,
+  menuName: PropTypes.string,
 };
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: ${({ isMobile }) => isMobile ? 'column' : 'row'};
-  padding: 20px 16px;
+  padding: ${({ isMobile }) => isMobile ? '20px 16px' : '20px 40px'};
   border-top: 1px solid #e6e6e6;
   border-bottom: 1px solid #e6e6e6;
 `;
@@ -156,6 +157,7 @@ const MenuItemCard = (props) => {
     imgUrl,
     viewport,
     handleDelete,
+    menuName,
   } = props;
 
   const dispatch = useDispatch();
@@ -174,7 +176,7 @@ const MenuItemCard = (props) => {
   const handleEdit = (data) => {
     if (isEdit && isDirty) {
       data.price = parseInt(data.price, 10);
-      dispatch(editItem(id, data));
+      dispatch(editItem(id, data, menuName));
       setIsEdit(false);
       reset(data);
     } else {
