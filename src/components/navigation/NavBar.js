@@ -7,24 +7,24 @@ import MenuButton from './MenuButton';
 
 function calculatePaddingLeft(
   offsetLeft,
-  variant,
   sideNavExpanded,
 ) {
-  if ((variant === 'loggedIn' || variant === 'hasBackLink') && !sideNavExpanded) {
+  if (!sideNavExpanded) {
     return `padding-left: calc(${offsetLeft}px + 40px); transition: padding-left 400ms`;
   }
-  if ((variant === 'loggedIn' || variant === 'hasBackLink') && sideNavExpanded) {
+  if (sideNavExpanded) {
     return `padding-left: calc(${offsetLeft}px + 268px); transition: padding-left 400ms`;
   }
   return 'padding-left: 80px';
 }
 
-const InputWrapper = styled.div`
+const ContentWrapper = styled.div`
   display: flex;
-  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
   height: 46px;
- ${({ offsetLeft, variant, sideNavExpanded }) => calculatePaddingLeft(offsetLeft, variant, sideNavExpanded)};
+ ${({ offsetLeft, sideNavExpanded }) => calculatePaddingLeft(offsetLeft, sideNavExpanded)};
 `;
 
 function calculateNavBarPadding(viewport) {
@@ -59,13 +59,12 @@ const StyledHeader = styled.div`
   align-items: center;
   width: -webkit-fill-available;
   z-index: 985;
-  background-color: ${({ variant, isDesktop }) => (variant === 'loggedOut' || !isDesktop ? Colors.White : Colors.GrayFaded)};
+  background-color: ${({ isDesktop }) => !isDesktop ? Colors.White : Colors.GrayFaded};
 `;
 
 const NavBar = (props) => {
   const {
     children,
-    variant,
     offsetLeft,
     sideNavExpanded,
     viewport,
@@ -74,7 +73,7 @@ const NavBar = (props) => {
   const isDesktop = viewport === 'desktop';
 
   return (
-    <StyledHeader viewport={viewport} isDesktop={isDesktop} variant={variant}>
+    <StyledHeader viewport={viewport} isDesktop={isDesktop}>
       {!isDesktop && (
         <>
           <MenuButton />
@@ -84,13 +83,12 @@ const NavBar = (props) => {
       {isDesktop
         && (
           <>
-            <InputWrapper
+            <ContentWrapper
               offsetLeft={offsetLeft}
               sideNavExpanded={sideNavExpanded}
-              variant={variant}
             >
-              {/* {renderHeaderContent(variant)} */}
-            </InputWrapper>
+            {children}
+            </ContentWrapper>
           </>
         ) }
     </StyledHeader>

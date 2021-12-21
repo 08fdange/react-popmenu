@@ -72,7 +72,7 @@ const App = ({ viewport }) => {
             menu={menuKey}
           />
         }
-      <NavBar>
+      <NavBar offsetLeft={80}>
         <h1>Menu</h1>
         <ButtonWrapper>
           <Button variant="primary" onClick={addItemModal}>Add menu item</Button>
