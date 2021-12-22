@@ -61,3 +61,29 @@ Notes:
 - Added an edit button for each item, state values for editing and editing image url editing
 - Added inputs that are based on ternary operators that render either text or inputs based on isEdit state
 - Added image overlay for menu item pictures, with "Click to edit" text and onClick that renders another input to edit the image url based on the editImg state
+
+## Level 4 - Bonus - Menu Management
+
+### Additions 
+- Changes to redux store, reducers and actions to handle multiple menus in the menu store
+- Updates regarding responsiveness, padding changes between mobile and desktop viewports
+- Switched out Header component for NavBar with a SideNavBar for menu management
+- Integrated SideNavManager into higher-order component used in conjunction with the ViewportManager
+- Added two more menus
+- Fixed multiple small bugs/edge cases
+
+## Level 5 - Add a menu
+
+### Additions
+- Button to open modal for menu creation
+- Redux action and reducer function 
+- Utility function for making menu key camelCase
+- Empty state for menus with no items on it yet
+
+#### Desktop: 
+
+![Menu-AddMenu-desktop](https://user-images.githubusercontent.com/60116865/147152071-8ed61073-091b-4669-b49e-684642174e74.gif)
+
+#### Mobile:
+
+![Menu-AddMenu-mobile](https://user-images.githubusercontent.com/60116865/147152104-ec46d576-2c4b-4eed-967d-33fc7174b09f.gif)
