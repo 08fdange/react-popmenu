@@ -45,7 +45,7 @@ function calculateNavBarPadding(viewport) {
 }
 
 const StyledHeader = styled.div`
-  position: ${({ viewport }) => (viewport === 'desktop' ? 'absolute' : 'fixed')}; 
+  position: fixed; 
   top: 0;
   left: 0;
   right: 0;

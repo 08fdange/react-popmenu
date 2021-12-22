@@ -97,11 +97,10 @@ const NavigationWrapper = styled.div`
 const MenuChoiceWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  ${'' /* height: ${({ isDesktop }) => (isDesktop ? 'auto' : '76px')}; */}
   justify-content: start;
   align-items: center;
   border-radius: 16px;
-  box-shadow: ${({ isDesktop}) => isDesktop ? undefined : '0 4px 14px 0 rgba(166,179,194,0.3)'};
+  box-shadow: 0 4px 14px 0 rgba(166,179,194,0.3);
   padding: 0px 16px;
   margin-bottom: 16px;
   cursor: pointer;
@@ -127,6 +126,14 @@ const Icon = styled.img`
   height: 40px;
 `;
 
+const PlusWrapper = styled.div`
+  font-size: 80px;
+  width: 40px;
+  height: 75.44px;
+  display: flex;
+  align-items: center;
+`;
+
 const renderList = (
   content,
   menuKey,
@@ -134,6 +141,7 @@ const renderList = (
   isDesktop,
   sideNavExpanded,
   sideNavAppHandler,
+  addMenuModal,
 ) => {
   return (
     <ContentWrapper>
@@ -144,7 +152,9 @@ const renderList = (
           <MenuChoiceWrapper 
             onClick={() => {
               setMenu(key);
-              sideNavAppHandler(false);
+              if (!isDesktop) {
+                sideNavAppHandler(false);
+              }
             }}
             active={active}
             isDesktop={isDesktop}
@@ -157,6 +167,22 @@ const renderList = (
           </MenuChoiceWrapper>
         )
       })}
+      <MenuChoiceWrapper
+        onClick={() => {
+          addMenuModal();
+          if (!isDesktop) {
+            sideNavAppHandler(false);
+          }
+        }}
+        isDesktop={isDesktop}
+      >
+        <PlusWrapper>
+          +
+        </PlusWrapper>
+        <MenuText hide={!!isDesktop && !sideNavExpanded}>
+              Add a menu
+            </MenuText>
+      </MenuChoiceWrapper>
     </ContentWrapper>
   );
 }
@@ -168,8 +194,8 @@ const SideNavBar = (props) => {
     setMenu,
     viewport,
     sideNavExpanded,
-    expandedBottomAction,
     sideNavAppHandler,
+    addMenuModal,
   } = props;
 
   const isDesktop = viewport === 'desktop';
@@ -202,7 +228,7 @@ const SideNavBar = (props) => {
           isDesktop,
           !!sideNavExpanded,
           sideNavAppHandler,
-          expandedBottomAction,
+          addMenuModal,
         )}
       </SidebarWrapper>
     </>
