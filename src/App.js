@@ -79,7 +79,7 @@ const App = ({ viewport }) => {
           />
         }
       <NavBar offsetLeft={80}>
-        <Title isMobile={isMobile}>{menu.title}</Title>
+        <Title isMobile={isMobile}>{menu?.title}</Title>
         <ButtonWrapper>
           <Button variant="primary" onClick={addItemModal}>Add menu item</Button>
         </ButtonWrapper>
@@ -87,7 +87,7 @@ const App = ({ viewport }) => {
       <SideNavBar menuKey={menuKey} setMenu={setMenu} content={menuStore} />
       <div className="top-of-menu" ref={startOfMenuItems} />
       <Menu isMobile={isMobile}>
-        {menu.items.map((item, index) => {
+        {!!menu && menu?.items.map((item, index) => {
           return(
             <MenuItemCard 
               key={item?.id || index} 
