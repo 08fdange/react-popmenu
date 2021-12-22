@@ -22,3 +22,10 @@ export const editItem = (id, payload, menu) => {
     payload
   }
 };
+
+export const addMenu = (payload) => {
+  return {
+    type: 'ADD_MENU',
+    payload
+  }
+};

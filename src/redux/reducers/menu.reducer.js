@@ -24,7 +24,7 @@ const menuReducer = (state = initialState, action) => {
         ...state,
         [action.menu]: {
           ...state[action.menu],
-          items: [...state[action.menu].items, action.payload]
+          items: [...state[action.menu]?.items, action.payload]
         }
       }
     case "REMOVE_MENU_ITEM":
@@ -44,6 +44,15 @@ const menuReducer = (state = initialState, action) => {
             if (item.id !== action.id) return item;
             return {...item, ...action.payload}
           })]
+        }
+      }
+    case "ADD_MENU":
+      const { key, title } = action.payload || {};
+      return {
+        ...state,
+        [key]: {
+          title,
+          items: []
         }
       }
     default:

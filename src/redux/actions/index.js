@@ -1,1 +1,1 @@
-export { addItem, removeItem, editItem } from './itemActions';
+export { addItem, removeItem, editItem, addMenu } from './itemActions';
