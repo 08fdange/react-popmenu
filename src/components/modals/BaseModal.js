@@ -37,9 +37,8 @@ const ModalBackground = styled.div`
 
 const ModalWrapper = styled.div`
   border-radius: 8px;
-  overflow: hidden;
-  width: ${({ width, viewport }) => width || getMeasures(MODAL_WIDTH, viewport)};
-  ${'' /* height: ${({ height, viewport }) => height || getMeasures(MODAL_HEIGHT, viewport)}; */}
+  overflow: scroll;
+  width: ${({ width, viewport }) => width || getMeasures(MODAL_WIDTH, viewport)}; 
   ${({ viewport }) => viewport === 'desktop' && 'max-height: 90vh;'};
   background-color: white;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
